@@ -1,17 +1,28 @@
-//
-//  therapyApp.swift
-//  therapy
-//
-//  Created by radhika verma  on 23/6/2026.
-//
-
 import SwiftUI
 
 @main
 struct therapyApp: App {
+    @StateObject var auth = AuthManager()
+    @StateObject var sessionManager = SessionManager()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if auth.isLoggedIn {
+                HomeView()
+                    .environmentObject(auth)
+                    .environmentObject(sessionManager)
+            } else {
+                LoginView()
+                    .environmentObject(auth)
+            }
+        }
+        
+        // Register the spatial immersion space for 3D hand therapy guidance
+        ImmersiveSpace(id: "TherapySpace") {
+            ImmersiveView()
+                .environmentObject(sessionManager)
+                .environmentObject(sessionManager.refController)
+                .environmentObject(sessionManager.handTracker)
         }
     }
 }

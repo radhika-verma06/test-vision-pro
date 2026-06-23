@@ -11,5 +11,7 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>NSHandsTrackingUsageDescription</key>
+	<string>This application requires access to Hand Tracking to monitor your therapeutic hand exercises and compute accuracy metrics in spatial coordinate space.</string>
 </dict>
 </plist>
